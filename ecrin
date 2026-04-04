@@ -1,0 +1,17 @@
+name: APK_Uretici
+on: [push]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: 'stable'
+      - run: flutter pub get
+      - run: flutter build apk --debug
+      - name: APK_Kaydet
+        uses: actions/upload-artifact@v4
+        with:
+          name: Sorunu-Coz-Hadi-APK
+          path: build/app/outputs/flutter-apk/app-debug.apk
